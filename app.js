@@ -19,7 +19,7 @@ const game = {
     ],
   }
   
-console.dir(pokemon, { maxArrayLength: null })
+// `console.dir(pokemon, { maxArrayLength: null })`
 
 
 
@@ -274,7 +274,7 @@ Solve Exercise 9 here:
 
 pokemon.forEach((starterMon) =>{
     if(starterMon.starter === true){
-      console.log(starterMon.name)                   //<<<---- I figured out this one when I was figuring out exercise 4!
+      console.log(starterMon.name)                 //<<<---- I figured out this one when I was figuring out exercise 4!
     }
   });  
 
@@ -320,7 +320,7 @@ Also, log the `game.items` array to confirm that the pokeball quantity is being 
 Solve Exercise 11 here:
 */
 
-game.catchPokemonn = function (pokemonObj){
+game.catchPokemonn = (pokemonObj) => {
   game.party.push(pokemonObj)
   game.items.forEach((minusPokeball) => {
     if (minusPokeball.name === "pokeball"){    //<<----i'm sure there is a way to simplify this
@@ -392,7 +392,7 @@ game.gymStatus = () => {    //<<---- creating the method
   }
   game.gyms.forEach((gymCompleted) =>{   //<<<---- loops through the gym array
     if (gymCompleted.completed === true){   
-      gymTally.completed += 1               //<<--- gyms are completed add 1 to the complete gymTally
+      gymTally.completed += 1               //<<--- if gyms are completed add 1 to the complete gymTally
     } else {
       gymTally.incompleted += 1             //<<---- gyms incompletes adds 1 to the incomplete gymTally
     }
@@ -514,7 +514,7 @@ game.catchPokemonn = (pokemonObj) => {      //<<----this is from EXERCISE 11!!! 
   }
 game.items.forEach((minusPokeball) => {
     if (minusPokeball.name === "pokeball"){    //<<------- subtracts pokeballs
-      minusPokeball.quantity -= 1
+      game.items[1].quantity -= 1
     } 
     }) 
   }
@@ -542,8 +542,8 @@ Solve Exercise 19 here:
 */
 
 game.catchPokemonn = (pokemonObj) => {
-  game.items.forEach((ballQuantity) => {            
-    if (ballQuantity.name === "pokeball" && ballQuantity.quantity >= 1){   //<<----- checks to see if the player has any pokeballs FIRST!
+
+    if (game.items[1].quantity < 1){   //<<----- checks to see if the player has any pokeballs FIRST!
       console.log(`You have not more pokeballs`)                          //<<--- if player has no balls, this will output
     } else {                               //<<--- else, if play has balls will continue to capture process
       if(game.party < 6){                //<<--- if party is less than 6, it will add the pokemon to my party
@@ -551,10 +551,10 @@ game.catchPokemonn = (pokemonObj) => {
        } else {                            // <<--- if party is 6, it will the pokemone to the collection
         game.collection.push(pokemonObj)
        }
-           ballQuantity.quantity -= 1      //<<------- subtracts pokeballs
+           game.items[1].quantity -= 1      //<<------- subtracts pokeballs
    } 
-  })
-}  
+  }
+
 
 
 game.catchPokemonn(pokemon[133]);  //<<------ catches Vaporeon
@@ -570,11 +570,13 @@ console.log(game.items);          //<<------looks at inventory
 
 // moving on for now, I'm not sure what I'm missing on this
 
+//problem was having a forEach loop going through the items, taking a quick glance and a classmates work gave me better insight to fixing my code.
+
 // =============================================================================================================================================================================================================
 
-console.log();
-console.log("Exercise 20")
-console.log()
+// console.log();
+// console.log("Exercise 20");
+// console.log();
 
 /*
 
@@ -590,15 +592,44 @@ Solve Exercise 20 here:
 
 
 
+// game.catchPokemonn = (poke) => {
+
+
+//  const foundpoke  = pokemon.find(banana => banana.name.toLowerCase()=== poke.toLowerCase())
+
+//   if (game.items[1].quantity < 1){   //<<----- checks to see if the player has any pokeballs FIRST!
+//     console.log(`You have no more pokeballs`)                          //<<--- if player has no balls, this will output
+//   } else {                               //<<--- else, if play has balls will continue to capture process
+//     if(game.party < 6){                //<<--- if party is less than 6, it will add the pokemon to my party
+//        game.party.push(poke)
+//      } else {                            // <<--- if party is 6, it will the pokemone to the collection
+//       game.collection.push(poke)
+//      }
+//          game.items[1].quantity -= 1      //<<------- subtracts pokeballs
+//  }
+
+
+
+
+// game.catchPokemonn(pokemon[133]);  //<<------ catches Vaporeon
+// console.log(game.party);          //<<------ looks are the party line up
+// console.log(game.collection);     //<<------ looks at what pokemone is in storage
+// console.log(game.items);          //<<------looks at inventory
+
+// not sure why this is not working 
+
+
+
+
 //until I can get Exercise 19 to work im going to hold off on this one for now
 
 
 //================================================================================================================================================================================================================
 
 
-console.log();
-console.log("Exercise 21")
-console.log()
+// console.log();
+// console.log("Exercise 21")
+// console.log()
 
 /*
 Dynamically construct an object with the existing `pokemon` data sorted by the different pokemon types. The object will have this structure:
@@ -703,6 +734,8 @@ game.pokemonTypeSort = () => {     //<---- method to call a sorted type object
 
 
 
-game.pokemonTypeSort()      //<<---- calls the pokemoneTypeSort(ing) method
+// game.pokemonTypeSort()      //<<---- calls the pokemoneTypeSort(ing) method
 
  // this works
+
+
